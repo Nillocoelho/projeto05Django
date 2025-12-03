@@ -1,0 +1,55 @@
+{% extends 'biblioteca/base.html' %}
+
+{% block title %}Publicações - Biblioteca{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-link-45deg"></i> Publicações (Livro-Autor)</span>
+        <a href="{% url 'publica_create' %}" class="btn btn-light btn-sm">
+            <i class="bi bi-plus-circle"></i> Nova Publicação
+        </a>
+    </div>
+    <div class="card-body">
+        {% if publicacoes %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Livro</th>
+                            <th>Autor</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for publica in publicacoes %}
+                        <tr>
+                            <td>{{ publica.id }}</td>
+                            <td>{{ publica.livro.titulo }}</td>
+                            <td>{{ publica.autor.nome }}</td>
+                            <td class="text-center">
+                                <a href="{% url 'publica_update' publica.pk %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{% url 'publica_delete' publica.pk %}" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-link-45deg text-muted" style="font-size: 4rem;"></i>
+                <p class="text-muted mt-3">Nenhuma publicação cadastrada.</p>
+                <a href="{% url 'publica_create' %}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Adicionar Publicação
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

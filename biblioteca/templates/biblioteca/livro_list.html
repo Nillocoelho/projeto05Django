@@ -1,0 +1,65 @@
+{% extends 'biblioteca/base.html' %}
+
+{% block title %}Livros - Biblioteca{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-journal-text"></i> Livros</span>
+        <a href="{% url 'livro_create' %}" class="btn btn-light btn-sm">
+            <i class="bi bi-plus-circle"></i> Novo Livro
+        </a>
+    </div>
+    <div class="card-body">
+        {% if livros %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Publicação</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Editora</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for livro in livros %}
+                        <tr>
+                            <td>{{ livro.id }}</td>
+                            <td>{{ livro.titulo }}</td>
+                            <td>{{ livro.publicacao|date:"d/m/Y" }}</td>
+                            <td>R$ {{ livro.preco }}</td>
+                            <td>
+                                <span class="badge {% if livro.estoque > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                                    {{ livro.estoque }}
+                                </span>
+                            </td>
+                            <td>{{ livro.editora.nome }}</td>
+                            <td class="text-center">
+                                <a href="{% url 'livro_update' livro.pk %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{% url 'livro_delete' livro.pk %}" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-journal-text text-muted" style="font-size: 4rem;"></i>
+                <p class="text-muted mt-3">Nenhum livro cadastrado.</p>
+                <a href="{% url 'livro_create' %}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Adicionar Livro
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'biblioteca/base.html' %}
+
+{% block title %}Home - Biblioteca{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12 text-center text-white">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="bi bi-book"></i> Sistema de Biblioteca
+        </h1>
+        <p class="lead">Gerencie autores, editoras, livros e publicações</p>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <!-- Card Autores -->
+    <div class="col-md-6 col-lg-3">
+        <div class="card stat-card h-100">
+            <div class="card-body text-center">
+                <div class="stat-icon text-primary mb-3">
+                    <i class="bi bi-person-fill"></i>
+                </div>
+                <h2 class="display-4 fw-bold text-primary">{{ total_autores }}</h2>
+                <p class="text-muted mb-3">Autores</p>
+                <a href="{% url 'autor_list' %}" class="btn btn-outline-primary btn-sm">
+                    <i class="bi bi-eye"></i> Ver todos
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Editoras -->
+    <div class="col-md-6 col-lg-3">
+        <div class="card stat-card h-100">
+            <div class="card-body text-center">
+                <div class="stat-icon text-success mb-3">
+                    <i class="bi bi-building"></i>
+                </div>
+                <h2 class="display-4 fw-bold text-success">{{ total_editoras }}</h2>
+                <p class="text-muted mb-3">Editoras</p>
+                <a href="{% url 'editora_list' %}" class="btn btn-outline-success btn-sm">
+                    <i class="bi bi-eye"></i> Ver todas
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Livros -->
+    <div class="col-md-6 col-lg-3">
+        <div class="card stat-card h-100">
+            <div class="card-body text-center">
+                <div class="stat-icon text-warning mb-3">
+                    <i class="bi bi-journal-text"></i>
+                </div>
+                <h2 class="display-4 fw-bold text-warning">{{ total_livros }}</h2>
+                <p class="text-muted mb-3">Livros</p>
+                <a href="{% url 'livro_list' %}" class="btn btn-outline-warning btn-sm">
+                    <i class="bi bi-eye"></i> Ver todos
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Publicações -->
+    <div class="col-md-6 col-lg-3">
+        <div class="card stat-card h-100">
+            <div class="card-body text-center">
+                <div class="stat-icon text-info mb-3">
+                    <i class="bi bi-link-45deg"></i>
+                </div>
+                <h2 class="display-4 fw-bold text-info">{{ total_publicacoes }}</h2>
+                <p class="text-muted mb-3">Publicações</p>
+                <a href="{% url 'publica_list' %}" class="btn btn-outline-info btn-sm">
+                    <i class="bi bi-eye"></i> Ver todas
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-plus-circle"></i> Ações Rápidas
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a href="{% url 'autor_create' %}" class="btn btn-primary w-100">
+                            <i class="bi bi-person-plus"></i> Novo Autor
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'editora_create' %}" class="btn btn-success w-100">
+                            <i class="bi bi-building-add"></i> Nova Editora
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'livro_create' %}" class="btn btn-warning w-100">
+                            <i class="bi bi-journal-plus"></i> Novo Livro
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="{% url 'publica_create' %}" class="btn btn-info w-100">
+                            <i class="bi bi-link"></i> Nova Publicação
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

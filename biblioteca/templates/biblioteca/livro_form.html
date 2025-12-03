@@ -1,0 +1,75 @@
+{% extends 'biblioteca/base.html' %}
+
+{% block title %}{{ titulo }} - Biblioteca{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-journal-text"></i> {{ titulo }}
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label" for="{{ form.titulo.id_for_label }}">Título</label>
+                            {{ form.titulo }}
+                            {% if form.titulo.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.titulo.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="{{ form.publicacao.id_for_label }}">Data de Publicação</label>
+                            {{ form.publicacao }}
+                            {% if form.publicacao.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.publicacao.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="{{ form.editora.id_for_label }}">Editora</label>
+                            {{ form.editora }}
+                            {% if form.editora.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.editora.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="{{ form.preco.id_for_label }}">Preço (R$)</label>
+                            {{ form.preco }}
+                            {% if form.preco.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.preco.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" for="{{ form.estoque.id_for_label }}">Estoque</label>
+                            {{ form.estoque }}
+                            {% if form.estoque.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for error in form.estoque.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Salvar
+                        </button>
+                        <a href="{% url 'livro_list' %}" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Script para popular o banco de dados com dados de exemplo
 # Execute: python manage.py shell < populate_db.py
 
@@ -13,12 +14,12 @@ Editora.objects.all().delete()
 print("\nCriando Autores...")
 autores = [
     Autor.objects.create(nome="Machado de Assis"),
-    Autor.objects.create(nome="José de Alencar"),
+    Autor.objects.create(nome="Jose de Alencar"),
     Autor.objects.create(nome="Clarice Lispector"),
     Autor.objects.create(nome="Jorge Amado"),
     Autor.objects.create(nome="Carlos Drummond de Andrade"),
 ]
-print(f"✓ {len(autores)} autores criados")
+print(f"[OK] {len(autores)} autores criados")
 
 print("\nCriando Editoras...")
 editoras = [
@@ -26,9 +27,9 @@ editoras = [
     Editora.objects.create(nome="Record"),
     Editora.objects.create(nome="Globo Livros"),
     Editora.objects.create(nome="Saraiva"),
-    Editora.objects.create(nome="Ática"),
+    Editora.objects.create(nome="Atica"),
 ]
-print(f"✓ {len(editoras)} editoras criadas")
+print(f"[OK] {len(editoras)} editoras criadas")
 
 print("\nCriando Livros...")
 livros = [
@@ -40,7 +41,7 @@ livros = [
         editora=editoras[0]
     ),
     Livro.objects.create(
-        titulo="Memórias Póstumas de Brás Cubas",
+        titulo="Memorias Postumas de Bras Cubas",
         publicacao=date(1881, 1, 1),
         preco=32.50,
         estoque=10,
@@ -61,7 +62,7 @@ livros = [
         editora=editoras[1]
     ),
     Livro.objects.create(
-        titulo="Capitães da Areia",
+        titulo="Capitaes da Areia",
         publicacao=date(1937, 1, 1),
         preco=35.00,
         estoque=20,
@@ -75,25 +76,25 @@ livros = [
         editora=editoras[0]
     ),
 ]
-print(f"✓ {len(livros)} livros criados")
+print(f"[OK] {len(livros)} livros criados")
 
-print("\nCriando Publicações (Livro-Autor)...")
+print("\nCriando Publicacoes (Livro-Autor)...")
 publicacoes = [
     Publica.objects.create(livro=livros[0], autor=autores[0]),  # Dom Casmurro - Machado
-    Publica.objects.create(livro=livros[1], autor=autores[0]),  # Memórias - Machado
-    Publica.objects.create(livro=livros[2], autor=autores[1]),  # Senhora - José de Alencar
+    Publica.objects.create(livro=livros[1], autor=autores[0]),  # Memorias - Machado
+    Publica.objects.create(livro=livros[2], autor=autores[1]),  # Senhora - Jose de Alencar
     Publica.objects.create(livro=livros[3], autor=autores[2]),  # A Hora da Estrela - Clarice
-    Publica.objects.create(livro=livros[4], autor=autores[3]),  # Capitães - Jorge Amado
+    Publica.objects.create(livro=livros[4], autor=autores[3]),  # Capitaes - Jorge Amado
     Publica.objects.create(livro=livros[5], autor=autores[4]),  # Sentimento - Drummond
 ]
-print(f"✓ {len(publicacoes)} publicações criadas")
+print(f"[OK] {len(publicacoes)} publicacoes criadas")
 
 print("\n" + "="*50)
-print("✓ Banco de dados populado com sucesso!")
+print("[OK] Banco de dados populado com sucesso!")
 print("="*50)
 print(f"\nResumo:")
-print(f"  • {Autor.objects.count()} Autores")
-print(f"  • {Editora.objects.count()} Editoras")
-print(f"  • {Livro.objects.count()} Livros")
-print(f"  • {Publica.objects.count()} Publicações")
+print(f"  - {Autor.objects.count()} Autores")
+print(f"  - {Editora.objects.count()} Editoras")
+print(f"  - {Livro.objects.count()} Livros")
+print(f"  - {Publica.objects.count()} Publicacoes")
 print()
